@@ -8,27 +8,24 @@ for (let i = 0; i < SQUARES_NUMBER; i++) {
     square.classList.add('square')
     board.append(square)
 
-square.addEventListener('mouseover', () => {
-    setColor(square)
-})
+square.addEventListener('mouseover', setColor)
 
-square.addEventListener('mouseleave', () => {
-    removeColor(square)
-})
+square.addEventListener('mouseleave', removeColor)
 }
 
-function setColor(element) {
+function setColor(event) {
+    const element = event.target
     const color = getColor();
     element.style.background = color;
-    element.style.boxShadow =`0 0 2px ${color}, 00 5px ${color}`
+    element.style.boxShadow =`0 0 2px ${color}, 00 1px ${color}`
 }
 
-function removeColor(element) {
+function removeColor(event) {
+    const element = event.target
     element.style.background="#202020"
     element.style.boxShadow =`0 0 2px #202020`
 }
 
 function getColor() {
-   const index =  Math.floor(Math.random() * colors.length)
-   return colors[index]
+   return colors[Math.floor(Math.random() * colors.length)]
 }
